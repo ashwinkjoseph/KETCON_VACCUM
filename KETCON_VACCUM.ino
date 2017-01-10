@@ -1,7 +1,7 @@
 #define leftmotor_a 11
-#define rightmotor_a 11
-#define leftmotor_b 9
-#define rightmotor_b 9 
+#define rightmotor_a 6
+#define leftmotor_b 10
+#define rightmotor_b 5 
 
 int i;
 
@@ -59,6 +59,7 @@ void loop() {
         analogWrite(rightmotor_b, 0);
       }
       else{
+        // same as previous but to opposite direction
         if(dat1 > 200){
           analogWrite(leftmotor_a, 255);
           analogWrite(leftmotor_b, 0);
@@ -69,6 +70,7 @@ void loop() {
     }
   }
   else{
+    // if there is an obstacle in this side, it moves in the opposite side
     if(dat1 < 200){
       analogWrite(leftmotor_a, 125);
       analogWrite(leftmotor_b, 0);
@@ -76,12 +78,14 @@ void loop() {
       analogWrite(rightmotor_b, 0);
     }
     else{
+      // if there is an obstacle in this direction, it moves in the opposite side
       if(dat2 < 200){
         analogWrite(leftmotor_a, 255);
         analogWrite(leftmotor_b, 0);
         analogWrite(rightmotor_a, 125);
         analogWrite(rightmotor_b, 0);
       }
+      // if there is no obstacle in any direction, it keeps moving forward
       else{
         analogWrite(leftmotor_a, 255);
         analogWrite(leftmotor_b, 0);
